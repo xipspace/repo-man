@@ -24,10 +24,10 @@ Challenge 3 : balloonChallenge
 Prototype 4 : islandBattle<br>
 Challenge 4 : Soccer Scripting
 1. Clicky Mouse<br>
-Prototype 5 : PointMe<br>
+Prototype 5 : [PointMe](https://play.unity.com/mg/other/point-me)<br>
 Challenge 5 : foodChallenge
 
-https://play.unity.com/mg/other/point-me
+
 
 ### Ark2d:
 
