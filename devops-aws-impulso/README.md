@@ -1,6 +1,6 @@
 # Estrutura da Jornada DevOps com AWS - Impulso
 
-1. Infraestrutura como Código: Script de Criação de Estrutura de Usuários, Diretórios e Permissões : [estrutura-usuario.sh](estrutura-usuario.sh)
+1. Infraestrutura como Código - Script de Criação de Estrutura de Usuários, Diretórios e Permissões : [estrutura-usuario.sh](estrutura-usuario.sh)
 
 1. Infraestrutura como Código - Script de Provisionamento de um Servidor Web (Apache) : [estrutura-web-server.sh](estrutura-web-server.sh)
 
