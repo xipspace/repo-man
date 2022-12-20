@@ -1,8 +1,6 @@
 
 # Workflow
 
-gm > canvas 
-
 game manager :
 empty object + script
 
@@ -17,7 +15,8 @@ scene management
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 	
-spawn : object pooling >
+spawn : distribute all objects before pooling
+object pooling >
 https://learn.unity.com/tutorial/introduction-to-object-pooling
 
 	if (Input.GetKeyDown(KeyCode.Space)){
@@ -34,13 +33,12 @@ https://learn.unity.com/tutorial/introduction-to-object-pooling
 		}
 	}
 
-controls
-
-
 
 # Basic Controls
 
 Use either the Translate method or AddForce method (if using physics) to move your character
+
+It is actually much easier to increase the size of a list at runtime than it is for an array
 
 Throughout the course, we’ve created a lot of prototypes that instantiated and destroyed objects during gameplay, but there’s actually a more performant / efficient way to do that called Object Pooling
 
