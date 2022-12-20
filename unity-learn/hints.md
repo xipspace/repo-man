@@ -1,4 +1,43 @@
 
+# Workflow
+
+gm > canvas 
+
+game manager :
+empty object + script
+
+ux : canvas >
+button > onclick + game manager + function
+
+scene management
+
+	using UnityEngine.SceneManagement;
+	...
+	public void RestartGame(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+	
+spawn : object pooling >
+https://learn.unity.com/tutorial/introduction-to-object-pooling
+
+	if (Input.GetKeyDown(KeyCode.Space)){
+		
+		// No longer necessary to Instantiate prefabs
+		// Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+
+		// Get an object object from the pool
+		GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+		
+		if (pooledProjectile != null){
+			pooledProjectile.SetActive(true); // activate it
+			pooledProjectile.transform.position = transform.position; // position it at player
+		}
+	}
+
+controls
+
+
+
 # Basic Controls
 
 Use either the Translate method or AddForce method (if using physics) to move your character

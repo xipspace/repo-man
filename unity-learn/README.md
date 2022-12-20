@@ -7,9 +7,9 @@ Unity Engine files repository.
 
 <img src="https://images.youracclaim.com/images/ebea4a14-2685-4e01-ac66-9bc88e0b26c0/00-Unity_Essentials-Pathway_Badge.png" alt="Essentials Badge" width="80"/>
 
-## Study Cases
+# Study Cases
 
-### Unity Junior Programmer Pathway
+## Unity Junior Programmer Pathway
 
 1. Player Control<br>
 Prototype 1 : blockRace<br>
@@ -27,9 +27,23 @@ Challenge 4 : Soccer Scripting
 Prototype 5 : [PointMe](https://play.unity.com/mg/other/point-me)<br>
 Challenge 5 : foodChallenge
 
+### blockRace
 
+wheel torque
 
-### Ark2d:
+### foodChain
 
-Arkanoid game using primitives.<br>
+[WIP] bonus features
+
+## ark2d
+
+Arkanoid game using primitives<br>
 [WIP] user interface, block properties
+
+## fowlWars
+
+clean template based on prototype 2
+
+
+
+
