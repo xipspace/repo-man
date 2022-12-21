@@ -44,7 +44,8 @@ Arkanoid game using primitives<br>
 
 - clean template based on prototype 2
 - adds UI, player, single ammo and mob
-- [WIP] pooling, mob waves
+- object pooling, bomb detonates
+- [WIP] mob waves
 
 
 | | Player | Ammo | Mob |
