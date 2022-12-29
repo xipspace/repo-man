@@ -7,61 +7,58 @@
 
 enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
 
-// data class Usuario(var nome: String, var cursos: List<ConteudoEducacional>)
-data class Usuario(var nome: String)
+data class Usuario(val nome: String)
 
 data class ConteudoEducacional(var nome: String,
-                               val duracao: Int = 60,
-                               var isEnrolled: Boolean = false,
-                               var isConcluded: Boolean = false)
+                               val duracao: Int = 60)
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-    
+data class Formacao(val nome: String,
+                    var conteudos: List<ConteudoEducacional> = emptyList()) {
+
     val inscritos = mutableListOf<Usuario>()
-    
+
     fun matricular(usuario: Usuario) {
         // TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-        println(conteudos)
-        /*
+        if(!inscritos.contains(usuario)){
 
-        if(!usuario.isEnrolled && !usuario.isConcluded){
-            usuario.isEnrolled = true
             inscritos.add(usuario)
+            println("Cadastro de ${usuario.nome} em ${this.nome} foi um sucesso.")
             // println(inscritos)
+
         }
-        */
+
     }
 }
 
 fun main() {
     // TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
     // TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
-    
+
+    val formacao1 = Formacao("Android Developer")
+
     val user1 = Usuario("John")
     val user2 = Usuario("Paul")
     val user3 = Usuario("George")
     val user4 = Usuario("Ringo")
-    
-    val curso1 = ConteudoEducacional("Programador", 90)
-    val curso2 = ConteudoEducacional("QA", 60)
-    val curso3 = ConteudoEducacional("Test", 30)
-    
+
     var userList = mutableListOf<Usuario>()
-    userList.add(user1)
-    userList.add(user2)
-    userList.add(user3)
-    userList.add(user4)
-    
-    var cursosList = mutableListOf<ConteudoEducacional>()
-    cursosList.add(curso1)
-    cursosList.add(curso2)
-    cursosList.add(curso3)
-    
-    // Formacao(cursosList[0].nome, cursosList).matricular(user1)
-    // Formacao(cursosList[0].nome, cursosList).matricular(user2)
-    
-    println(user1)
-    
-    // check lists
-    
+    userList.addAll(listOf(user1, user2, user3, user4))
+
+    /*
+    Nivel.values().forEach { println(it) }
+    userList.forEach { println(it) }
+    cursoList.forEach { println(it) }
+
+    for (user in userList){
+        println(user)
+    }
+
+    for (i in 0 until userList.size){
+        println(userList[i])
+    }
+    */
+
+    userList.forEach { formacao1.matricular(it) }
+    println(formacao1.inscritos)
+
 }
