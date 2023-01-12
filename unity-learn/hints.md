@@ -16,23 +16,6 @@ scene management
 	}
 	
 spawn : distribute all objects before pooling
-object pooling >
-https://learn.unity.com/tutorial/introduction-to-object-pooling
-
-	if (Input.GetKeyDown(KeyCode.Space)){
-		
-		// No longer necessary to Instantiate prefabs
-		// Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-
-		// Get an object object from the pool
-		GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
-		
-		if (pooledProjectile != null){
-			pooledProjectile.SetActive(true); // activate it
-			pooledProjectile.transform.position = transform.position; // position it at player
-		}
-	}
-
 
 # Basic Controls
 
@@ -83,3 +66,39 @@ Force: Add a continuous force to the rigidbody, using its mass.<br>
 Acceleration: Add a continuous acceleration to the rigidbody, ignoring its mass.<br>
 Impulse: Add an instant force impulse to the rigidbody, using its mass.<br>
 VelocityChange: Add an instant velocity change to the rigidbody, ignoring its mass.<br>
+
+## Easy Quit
+
+		if (Input.GetKey(KeyCode.Escape))
+		{
+			Application.Quit();
+		#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+		#endif
+		}
+
+## Object Pooling
+
+object pooling >
+https://learn.unity.com/tutorial/introduction-to-object-pooling
+
+	if (Input.GetKeyDown(KeyCode.Space)){
+		
+		// No longer necessary to Instantiate prefabs
+		// Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+
+		// Get an object object from the pool
+		GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+		
+		if (pooledProjectile != null){
+			pooledProjectile.SetActive(true); // activate it
+			pooledProjectile.transform.position = transform.position; // position it at player
+		}
+	}
+
+## Physics Best Practices
+
+Establish what should collide with what.<br>For that you should define different Layers for each type of object.
+<br>For each new layer, a new row and column is added on the Collision Matrix.
+<br>This matrix is responsible for defining interactions between layers. By default, when adding a new layer, the Collision Matrix is set for that new layer to collide with every other existing one, so it’s the developer’s responsibility to access it and setup its interactions.
+<br>By correctly setting layers and setting up your Collision Matrix, you will avoid unnecessary collisions and testing on collision listeners.

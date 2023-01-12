@@ -7,7 +7,7 @@ Unity Engine files repository.
 
 <img src="https://images.youracclaim.com/images/ebea4a14-2685-4e01-ac66-9bc88e0b26c0/00-Unity_Essentials-Pathway_Badge.png" alt="Essentials Badge" width="80"/>
 
-# Study Cases
+# Case
 
 ## Unity Junior Programmer Pathway
 
