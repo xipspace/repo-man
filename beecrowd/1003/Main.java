@@ -1,19 +1,16 @@
 /*
-	beecrowd 1004 : Simple Product
+	beecrowd 1003 : Simple Sum
 */
-
-import java.io.IOException;
-import java.util.Scanner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Scanner;
 
+class Main {
 
-class Run {
+	public static void main(String[] args) {
 
-	public static void main(String[] args) throws IOException {
-
-		int A, B, PROD;
+		int A, B;
 
 		Scanner scan1 = new Scanner(System.in);
 		System.out.print("enter data : ");
@@ -22,9 +19,7 @@ class Run {
 		B = scan1.nextInt();
 		scan1.close();
 
-		PROD = A * B;
-
-		System.out.println("PROD = " + PROD);
+		System.out.println("SOMA = " + (A + B));
 
 	}
 
