@@ -4,7 +4,7 @@
 	Seu Zé está vendendo frutas com a seguinte tabela de preços:
 	
 	Peso			-5		+5
-	Morango		2,5		2,2
+	Morango			2,5		2,2
 	Maça			1,8		1,5
 
 	Se o cliente comprar mais de 8 Kg em frutas ou o valor total da compra ultrapassar R$ 25,00, receberá ainda um desconto de 10% sobre este total.
