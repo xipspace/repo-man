@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from datetime import datetime
 import cv2
 import numpy as np
@@ -100,11 +101,21 @@ def process_page(folder, pdf_file, page_num, doc):
 def treat_images(folders):
     for folder in folders:
         pdf_files = [f for f in os.listdir(folder) if f.endswith('.pdf')]
+        jpg_files = [f for f in os.listdir(folder) if f.endswith('.jpg')]
+        treated_files = [f for f in jpg_files if f.startswith('treated_')]
+
         for pdf_file in pdf_files:
             pdf_path = os.path.join(folder, pdf_file)
-            doc = fitz.open(pdf_path)
-            for page_num in range(doc.page_count):
-                process_image(folder, pdf_file, page_num)
+
+            with fitz.open(pdf_path) as doc:
+                for page_num in range(doc.page_count):
+                    process_image(folder, pdf_file, page_num)
+
+        # Remove all PDF and JPG files except those with the "treated_" prefix
+        for file in pdf_files + jpg_files:
+            file_path = os.path.join(folder, file)
+            if file not in treated_files:
+                os.remove(file_path)
 
 # Function to process an image
 def process_image(folder, pdf_file, page_num, quality=35, max_width=2000):
@@ -191,6 +202,11 @@ def convert_images_to_pdf(created_folders):
                 pdf_file_path = jpg_file_path.replace(".jpg", ".pdf")
                 image.save(pdf_file_path, "PDF")
 
+            # Remove all JPG files after converting them to PDF
+            for jpg_file in jpg_files:
+                jpg_file_path = os.path.join(folder_path, jpg_file)
+                os.remove(jpg_file_path)
+
     except Exception as e:
         print(f"Error converting images to PDF in folder {folder_path}: {e}")
 
@@ -205,20 +221,27 @@ def merge_pdfs(created_folders):
                 continue
 
             if len(pdf_files) == 1:
-                print(f"Only one PDF file found in the folder: {folder_path}. No pages to be merged.")
+                print(f"Only one PDF file found in the folder: {folder_path}. Renaming the file.")
+                pdf_file = pdf_files[0]
+                old_path = os.path.join(folder_path, pdf_file)
+                new_path = os.path.join(folder_path, f"{os.path.basename(folder_path)}.pdf")
+                os.rename(old_path, new_path)
                 continue
 
             pdf_files.sort(key=natural_sort_key)
 
             pdf_document = fitz.open()
 
-            # Use the base name of the first PDF file as the name for the merged PDF
-            first_pdf_base_name = os.path.splitext(pdf_files[0])[0]
-            output_pdf_file = os.path.join(folder_path, f"{first_pdf_base_name}_merged.pdf")
+            # Use the folder name as the base name for the merged PDF
+            folder_name = os.path.basename(folder_path)
+            output_pdf_file = os.path.join(folder_path, f"{folder_name}_merged.pdf")
 
             for pdf_file in pdf_files:
                 pdf_file_path = os.path.join(folder_path, pdf_file)
                 pdf_document.insert_pdf(fitz.open(pdf_file_path), from_page=0)
+
+                # Remove individual PDFs after merging
+                os.remove(pdf_file_path)
 
             pdf_document.save(output_pdf_file)
             pdf_document.close()
@@ -228,6 +251,7 @@ def merge_pdfs(created_folders):
         if os.path.exists(output_pdf_file):
             os.remove(output_pdf_file)
             print(f"Removed incomplete merged file: '{output_pdf_file}'")
+
 
 # Function to list files in a folder
 def list_files(folder_path):
@@ -275,7 +299,7 @@ def handle_user_choice(pdf_files, created_folders):
                     list_folder_info(created_folders)
             elif user_choice == 0:
                 print("Exiting the script.")
-                exit()
+                sys.exit()
             else:
                 print("Invalid option. Please try again.")
         except ValueError:
